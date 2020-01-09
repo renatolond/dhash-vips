@@ -79,7 +79,7 @@ module DHashVips
 
     def fingerprint filename, power = 3
       size = 2 ** power
-      image = Vips::Image.new_from_file filename
+      image = Vips::Image.new_from_file filename, access: :sequential
       image = image.resize(size.fdiv(image.width), vscale: size.fdiv(image.height)).colourspace("b-w").flatten
 
       array = image.to_a.map &:flatten
